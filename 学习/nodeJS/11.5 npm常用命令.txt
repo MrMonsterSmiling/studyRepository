@@ -1,0 +1,7 @@
+npm:
+
+install _ 安装(模块、命令。。。)
+uninstall _ 卸载
+list 当前目录下已安装的node包
+info _ 查看信息
+install _@_(版本) 指定版本安装
