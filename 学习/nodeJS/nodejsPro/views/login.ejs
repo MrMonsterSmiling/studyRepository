@@ -7,11 +7,16 @@
 </head>
 <body>
     <h2>这是一个登录页面</h2>
-    <h3><%=msg%></h3>
+    <!-- <h3><%=msg%></h3>
     <ul>
         <%for(var i=0;i<list.length;i++){%>
               <li><%=list[i]%></li>
         <%}%>
-    </ul>
+    </ul> -->
+    <form action="/doLogin" method="post" >
+        <input type="text" name="account">
+        <input type="text" name="password">
+        <button>提交</button>
+    </form>
 </body>
 </html>

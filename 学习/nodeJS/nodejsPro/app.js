@@ -1,27 +1,15 @@
 const http = require('http');
 const server = require('./module/server.js');
 const url = require('url');
-const ejs = require('ejs');
+//获取请求方式用request.method
 http.createServer(async function (request, response) {
     await server.initServer(request,response,'./static')
-    let pathname = url.parse(request.url).pathname;
+    let pathname = url.parse(request.url).pathname.replace('/','');
     console.log('路径',pathname)
-    switch(pathname){
-        case '/login':
-            let msg = "绑定的数据";
-            let list = ['1','2','3'];
-            ejs.renderFile('./views/login.ejs',{msg,list},(error,data)=>{
-                response.writeHead(200,{"content-type":"text/html;charset=utf-8"});
-                response.end(data);
-            })
-            break;
-        case '/register':
-            response.writeHead(200,"text/html;charset=utf-8");
-            response.end("register");
-            break;
-        default:
-            response.writeHead(404,{"content-type":"text/html;charset=utf-8"});
-            response.end("404,无路由");
+    try {
+        server[pathname](request,response);
+    } catch (error) {
+        server.error(request,response,error.toString());
     }
 }).listen(8081);
 
