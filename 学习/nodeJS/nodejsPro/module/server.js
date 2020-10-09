@@ -22,12 +22,8 @@ let app = {
                      // }
                      if(!error){
                          let mime = await utils.utils.getFileMime(extname);//设置返回头，还不完整
-                         console.log("响应类型",mime);
-                         response.writeHead(200, {'Content-Type':'text/html;charset="utf-8"'});
+                         response.writeHead(200, {'Content-Type':''+mime+';charset="utf-8"'});
                          response.end(data);
-                     }else{
-                        response.writeHead(200, {'Content-Type':'text/html;charset="utf-8"'});
-                        response.end(error);
                      }
                      resolve('执行成功');
                  })
@@ -38,9 +34,7 @@ let app = {
          })
      },
      login:(req,res)=>{
-        let msg = "绑定的数据";
-        let list = ['1','2','3'];
-        ejs.renderFile('./views/login.ejs',{msg,list},(error,data)=>{
+        ejs.renderFile('./views/login.ejs',{},(error,data)=>{
             res.writeHead(200,{"content-type":"text/html;charset=utf-8"});
             res.end(data);
         })
