@@ -1,3 +1,4 @@
+//模仿express框架设置路由和静态资源访问控制
 const url = require('url');
 const path = require('path');
 const fs = require('fs');
@@ -12,27 +13,30 @@ function resAddsend(res){
         res.end(data);
     }
 }
-
-function initStatic(req,res,staticPath){
+//事实证明尽量用同步方法
+async function initStatic(req,res,staticPath){
     let pathname = url.parse(req.url).pathname;
     pathname = pathname == '/'?'/index.html':pathname;
     let extname = path.extname(pathname);
     if(pathname != '/favicon.ico'){
-        fs.readFileSync(staticPath+''+pathname,async (error,data)=>{
-            if(!error){
+       try {
+            let data = fs.readFileSync(staticPath+''+pathname);
+            if(data){
                 let mime = await utils.utils.getFileMime(extname);
                 res.writeHead(200,{'content-type':''+mime+';charset=utf-8'});
                 res.end(data);
             }
-        })
+       } catch (error) {
+           
+       }
     }
 }
 
 
 
-let app = function(req,res){
+let app = async function(req,res){
     resAddsend(res);
-    initStatic(req,res,staticpath);
+    await initStatic(req,res,staticpath);
     try {
         let pathname = url.parse(req.url).pathname;
         if(req.method == 'GET' ){

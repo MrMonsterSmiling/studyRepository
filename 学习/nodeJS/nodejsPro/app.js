@@ -34,7 +34,7 @@ app.post('/doLogin',(req,res)=>{
     try {
         let queryObj = querystring.parse(req.body,'&','=',1000);
         if(queryObj.account=='1' && queryObj.password == '1'){
-            res.writeHead(302,{'Location':'./static/index.html'});
+            res.writeHead(302,{'Location':'/index.html'});
             res.end();
         }else{
             res.send(200,'账号密码错误');
