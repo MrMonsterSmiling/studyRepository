@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/common.css">
+    <title>登录</title>
+</head>
+<body>
+    <!-- 不解析成页面元素(=和-的区别) -->
+    <%=content%>
+    <form action="/doLogin" method="POST">
+        <!-- 解析成页面元素 -->
+        <%-content%>
+    </form>
+    <%- include('footer.html')%>
+</body>
+</html>

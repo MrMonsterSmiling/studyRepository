@@ -1,0 +1,9 @@
+.html-bottom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+    background-color: #cccccc;
+    margin:0  -8px 0 -8px;
+}
