@@ -1,1 +1,3 @@
 Node Snippets
+express-generator
+supervisor
